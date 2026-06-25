@@ -1,7 +1,7 @@
 # Ornith-1
 
 <div align="center">
-<img src=assets/ornith_logo.png width="45%"/>
+<img src=assets/ornith_logo.png width="65%"/>
 </div>
 
 [![Ornith Blog](https://img.shields.io/badge/%F0%9F%A6%A2%EF%B8%8F%20Ornith%20Blog%20-FD8E5B)](https://deep-reinforce.com/ornith.html)
