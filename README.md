@@ -26,70 +26,59 @@ This model card documents **Ornith-1.0-9B**, the most lightweight member of the 
 
 ### Benchmarks
 
+The table below merges the benchmark results of the full **Ornith-1.0** family (9B / 35B / 397B) into a single view. Each model is compared against the open-source and proprietary baselines reported in its respective model card.
 
-<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;width:100%;margin:0 auto;padding:16px 0">
-<table style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:13px">
-<thead><tr>
-<th style="width:28%;padding:10px 7px;text-align:left;font-weight:600;border-bottom:2px solid #FD8E5B;color:#FD8E5B"></th><th style="width:14.4%;padding:10px 7px;text-align:center;font-weight:700;border-bottom:2px solid #FD8E5B;color:#FD8E5B;font-size:14px;background:rgba(253, 142, 91, 0.12)">Ornith-1.0-9B</th><th style="width:14.4%;padding:10px 7px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B;font-size:14px;">Qwen3.5-9B</th><th style="width:14.4%;padding:10px 7px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B;font-size:14px;">Qwen3.5-35B-A3B</th><th style="width:14.4%;padding:10px 7px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B;font-size:14px;">Gemma4-12B</th><th style="width:14.4%;padding:10px 7px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B;font-size:14px;">Gemma4-31B</th></tr></thead>
+<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;width:100%;margin:0 auto;padding:16px 0;overflow-x:auto">
+<table style="min-width:1180px;border-collapse:collapse;font-size:12px">
+<thead>
+<tr>
+<th style="padding:8px 8px;text-align:left;border-bottom:2px solid #FD8E5B;color:#FD8E5B"></th>
+<th colspan="3" style="padding:8px 7px;text-align:center;font-weight:700;border-bottom:2px solid #FD8E5B;color:#FD8E5B;background:rgba(253,142,91,0.12);">Ornith-1.0 (ours)</th>
+<th colspan="9" style="padding:8px 7px;text-align:center;font-weight:600;border-bottom:2px solid #FD8E5B;color:#FD8E5B;">Open-Source Baselines</th>
+<th colspan="3" style="padding:8px 7px;text-align:center;font-weight:600;border-bottom:2px solid #FD8E5B;color:#FD8E5B;">Proprietary</th>
+</tr>
+<tr>
+<th style="padding:8px 8px;text-align:left;border-bottom:2px solid #FD8E5B;color:#FD8E5B"></th>
+<th style="padding:8px 6px;text-align:center;font-weight:700;border-bottom:2px solid #FD8E5B;color:#FD8E5B;background:rgba(253,142,91,0.12)">Ornith-1.0-9B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:700;border-bottom:2px solid #FD8E5B;color:#FD8E5B;background:rgba(253,142,91,0.12)">Ornith-1.0-35B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:700;border-bottom:2px solid #FD8E5B;color:#FD8E5B;background:rgba(253,142,91,0.12)">Ornith-1.0-397B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">Qwen3.5-9B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">Gemma4-12B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">Qwen3.5-35B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">Qwen3.6-35B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">Gemma4-31B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">Qwen3.5-397B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">Minimax-M3-428B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">GLM-5.2-744B</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">DeepSeek-V4-Pro-1.6T</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">Qwen3.7-Max</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">Claude Opus 4.7</th>
+<th style="padding:8px 6px;text-align:center;font-weight:500;border-bottom:2px solid #FD8E5B;color:#FD8E5B">Claude Opus 4.8</th>
+</tr>
+</thead>
 <tbody>
-<tr><td colspan="6" style="padding:8px 12px;font-weight:600;color:#FD8E5B;border-bottom:1px solid rgba(253, 142, 91, 0.2);background:rgba(253, 142, 91, 0.1)">Agentic Coding</td></tr>
-<tr>
-<td style="padding:7px 7px;padding-left:20px;border-bottom:1px solid rgba(128, 128, 128, 0.15);">Terminal-Bench 2.1 <sub><small>(Terminus-2)</small></sub></td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15);font-weight:600;color:#FD8E5B;background:rgba(253, 142, 91, 0.06)">43.1</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">21.3</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">41.4</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">21.0</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">42.1</td>
-</tr>
-<tr>
-<td style="padding:7px 7px;padding-left:20px;border-bottom:1px solid rgba(128, 128, 128, 0.15);">SWE-bench Verified</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15);font-weight:600;color:#FD8E5B;background:rgba(253, 142, 91, 0.06)">69.4</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">53.2</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">70.0</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">44.2</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">52.0</td>
-</tr>
-<tr>
-<td style="padding:7px 7px;padding-left:20px;border-bottom:1px solid rgba(128, 128, 128, 0.15);">SWE-bench Pro</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15);font-weight:600;color:#FD8E5B;background:rgba(253, 142, 91, 0.06)">42.9</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">31.3</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">44.6</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">27.6</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">35.7</td>
-</tr>
-<tr>
-<td style="padding:7px 7px;padding-left:20px;border-bottom:1px solid rgba(128, 128, 128, 0.15);">SWE-bench Multilingual</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15);font-weight:600;color:#FD8E5B;background:rgba(253, 142, 91, 0.06)">52.0</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">39.7</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">60.3</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">32.5</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">51.7</td>
-</tr>
-<tr>
-<td style="padding:7px 7px;padding-left:20px;border-bottom:1px solid rgba(128, 128, 128, 0.15);">NL2Repo</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15);font-weight:600;color:#FD8E5B;background:rgba(253, 142, 91, 0.06)">27.2</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">16.2</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">20.5</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">10.3</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">15.5</td>
-</tr>
-<tr>
-<td style="padding:7px 7px;padding-left:20px;border-bottom:1px solid rgba(128, 128, 128, 0.15);">Claw-eval Avg</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15);font-weight:600;color:#FD8E5B;background:rgba(253, 142, 91, 0.06)">63.1</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">53.2</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">65.4</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">32.5</td>
-<td style="padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15)">48.5</td>
-</tr>
+<tr><td colspan="16" style="padding:8px 12px;font-weight:600;color:#FD8E5B;border-bottom:1px solid rgba(253,142,91,0.2);background:rgba(253,142,91,0.1)">Agentic Coding</td></tr>
+<tr><td style="padding:6px 8px;padding-left:16px;border-bottom:1px solid rgba(128,128,128,0.15);white-space:nowrap">Terminal-Bench 2.1 <sub><small>(Terminus-2)</small></sub></td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">43.1</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">64.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">77.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">21.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">21</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">41.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">52.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">42.1</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">53.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">64</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">81.0</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">64</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">73.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">70.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">85</td></tr>
+<tr><td style="padding:6px 8px;padding-left:16px;border-bottom:1px solid rgba(128,128,128,0.15);white-space:nowrap">Terminal-Bench 2.1 <sub><small>(Claude Code)</small></sub></td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">40.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">62.8</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">78.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">18.9</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">38.9</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">49.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">48.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">82.7</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">66.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">69.8</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">69.7</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">78.9</td></tr>
+<tr><td style="padding:6px 8px;padding-left:16px;border-bottom:1px solid rgba(128,128,128,0.15);white-space:nowrap">SWE-bench Verified</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">69.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">75.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">82.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">53.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">44.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">70</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">73.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">52</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">76.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">80.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">80.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">80.8</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">87.6</td></tr>
+<tr><td style="padding:6px 8px;padding-left:16px;border-bottom:1px solid rgba(128,128,128,0.15);white-space:nowrap">SWE-bench Pro</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">42.9</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">50.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">62.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">31.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">27.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">44.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">49.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">35.7</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">51.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">59</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">62.1</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">55.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">60.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">64.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">69.2</td></tr>
+<tr><td style="padding:6px 8px;padding-left:16px;border-bottom:1px solid rgba(128,128,128,0.15);white-space:nowrap">SWE-bench Multilingual</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">52</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">69.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">78.9</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">39.7</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">32.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">60.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">67.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">51.7</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">69.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">76.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">78.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td></tr>
+<tr><td style="padding:6px 8px;padding-left:16px;border-bottom:1px solid rgba(128,128,128,0.15);white-space:nowrap">NL2Repo</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">27.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">34.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">48.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">16.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">10.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">20.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">29.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">15.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">36.8</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">42.1</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">48.9</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">47.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">69.7</td></tr>
+<tr><td style="padding:6px 8px;padding-left:16px;border-bottom:1px solid rgba(128,128,128,0.15);white-space:nowrap">Claw-eval Avg</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">63.1</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">69.8</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">77.1</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">53.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">32.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">65.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">68.7</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">48.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">70.7</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">75.8</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">65.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">78.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td></tr>
+<tr><td style="padding:6px 8px;padding-left:16px;border-bottom:1px solid rgba(128,128,128,0.15);white-space:nowrap">SWE Atlas - QnA</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">17.9</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">37.1</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">41.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">9.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">13.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">15.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">20.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">37.9</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">27.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">40.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">48.8</td></tr>
+<tr><td style="padding:6px 8px;padding-left:16px;border-bottom:1px solid rgba(128,128,128,0.15);white-space:nowrap">SWE Atlas - RF</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">16.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">29.7</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">42.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">4.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">10.2</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">11.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">18.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">48.6</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">46.7</td></tr>
+<tr><td style="padding:6px 8px;padding-left:16px;border-bottom:1px solid rgba(128,128,128,0.15);white-space:nowrap">SWE Atlas - TW</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">15.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">27.8</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15);font-weight:600;color:#FD8E5B;background:rgba(253,142,91,0.06)">39.1</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">4.4</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">9.8</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">13.3</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">18.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">30.8</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">38.5</td><td style="padding:6px 6px;text-align:center;border-bottom:1px solid rgba(128,128,128,0.15)">-</td></tr>
 </tbody>
 </table>
 <p style="margin-top:12px;font-size:10px;opacity:0.7">
-* Terminal-Bench 2.1: Harbor/Terminus-2, 3h timeout, 32 CPU / 48GB RAM, avg of 5 runs.<br/>
-* All SWE-Bench：Mini-SWE-Agent, temp=1.0, top_p=0.95, 200K context window.<br/>
-* NL2Repo：400K context, 48k output, anti-hacking filters.<br/>
-* ClawEval: An agentic code benchmark over real-user task distributions; temp=0.6, 256K context.<br/>
+* Terminal-Bench 2.1 (Terminus-2): evaluated with the Harbor/Terminus-2 framework, parser=json, temperature=1.0, top_p=1.0, 128K context window. Each run uses a 4-hour timeout with 32 CPU cores and 48GB RAM, averaged over 5 runs. We adjust the Qwen chat template to keep training and inference consistent and modify Harbor to align with vLLM's reasoning_content key.<br/>
+* Terminal-Bench 2.1 (Claude Code): evaluated with Claude Code 2.1.126, parser=json, temperature=1.0, top_p=1.0, max_new_tokens=131072, averaged over 5 runs (Qwen chat template likewise modified).<br/>
+* SWE-bench Verified / Pro / Multilingual: OpenHands harness, temp=1.0, top_p=0.95, 256K context window.<br/>
+* SWE Atlas QnA / RF / TW: mini-SWE-agent harness, temp=1.0, top_p=0.95, 128K context window, averaged over 5 runs.<br/>
+* NL2Repo: temperature=1.0, top_p=1.0, 400K context, 48K output, anti-hacking filters.<br/>
+* ClawEval: an agentic code benchmark over real-user task distributions; temp=0.6, 256K context.<br/>
+* Each Ornith model is compared against the baselines reported in its own model card; cells marked <code>-</code> were not reported for that model.
 </p>
-
 </div>
 
 ## Quickstart
@@ -257,53 +246,130 @@ You can point any OpenAI-compatible SDK (Python, Node.js, etc.) or `curl` at the
 
 ## Agentic Usage
 
-
+Ornith-1.0-9B excels in tool-calling and agentic coding capabilities.
 
 ### Agent Frameworks
 
 Because Ornith-1.0-9B exposes an OpenAI-compatible endpoint with tool calling, it works out of the box with standard agent frameworks. Below is a minimal example that connects Ornith-1.0-9B to tools through an MCP server.
 
 ```python
+import os
+from openai import OpenAI
 
+client = OpenAI(
+    base_url=os.getenv("OPENAI_BASE_URL", "http://localhost:8000/v1"),
+    api_key=os.getenv("OPENAI_API_KEY", "EMPTY"),
+)
+
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "run_shell",
+            "description": "Run a shell command and return its output.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "command": {"type": "string", "description": "The command to run"}
+                },
+                "required": ["command"],
+            },
+        },
+    }
+]
+
+messages = [{"role": "user", "content": "List the Python files in the current directory."}]
+
+response = client.chat.completions.create(
+    model="deepreinforce-ai/Ornith-1.0-9B",
+    messages=messages,
+    tools=tools,
+    temperature=0.6,
+    top_p=0.95,
+)
+print(response.choices[0].message)
 ```
 
 **Examples of using Ornith with agent harness:**
 
 #### Hermes Agent
 ```bash
-
+# Hermes talks to any OpenAI-compatible endpoint — point it at your Ornith server.
+export OPENAI_BASE_URL="http://localhost:8000/v1"
+export OPENAI_API_KEY="EMPTY"
+export MODEL="deepreinforce-ai/Ornith-1.0-9B"
 ```
 
 #### OpenHands
 ```bash
+pip install openhands-ai
 
+# OpenHands routes through LiteLLM; the "openai/" prefix selects the OpenAI-compatible path.
+export LLM_MODEL="openai/deepreinforce-ai/Ornith-1.0-9B"
+export LLM_BASE_URL="http://localhost:8000/v1"
+export LLM_API_KEY="EMPTY"
+
+# Launch the CLI (or run the official OpenHands Docker image with the same env vars).
+openhands
 ```
 
 #### llama.cpp / Ollama
 ```bash
+# Both runtimes load a GGUF build of Ornith (publish one at deepreinforce-ai/Ornith-1.0-9B-GGUF).
 
+# llama.cpp — serve an OpenAI-compatible API on port 8000.
+llama-server -hf deepreinforce-ai/Ornith-1.0-9B-GGUF --port 8000 -c 262144
+
+# Ollama — pull and chat with the same GGUF straight from Hugging Face.
+ollama run hf.co/deepreinforce-ai/Ornith-1.0-9B-GGUF
 ```
 
 #### Unsloth Studio
 
 ```bash
+pip install unsloth
 
+# Load Ornith for fast local inference or fine-tuning (Python):
+#   from unsloth import FastLanguageModel
+#   model, tokenizer = FastLanguageModel.from_pretrained(
+#       "deepreinforce-ai/Ornith-1.0-9B",
+#       max_seq_length=262144,
+#       load_in_4bit=True,
+#   )
 ```
 
 
 #### OpenClaw
 
 ```bash
-
+# OpenClaw talks to any OpenAI-compatible endpoint — point it at your Ornith server.
+export OPENAI_BASE_URL="http://localhost:8000/v1"
+export OPENAI_API_KEY="EMPTY"
+export OPENAI_MODEL="deepreinforce-ai/Ornith-1.0-9B"
 ```
 
 
 ### Coding CLIs
 
+Ornith-1.0-9B is optimized for terminal-based coding agents. Point any OpenAI-compatible coding CLI at your Ornith-1.0-9B endpoint (set `OPENAI_BASE_URL` and `OPENAI_API_KEY`) to understand large codebases, automate tedious work, and ship faster.
 
 #### OpenCode
 ```bash
+# Register your local Ornith endpoint as a provider in ~/.config/opencode/opencode.json:
+#
+# {
+#   "$schema": "https://opencode.ai/config.json",
+#   "provider": {
+#     "ornith": {
+#       "npm": "@ai-sdk/openai-compatible",
+#       "name": "Ornith (local)",
+#       "options": { "baseURL": "http://localhost:8000/v1", "apiKey": "EMPTY" },
+#       "models": { "deepreinforce-ai/Ornith-1.0-9B": { "name": "Ornith-1.0-9B" } }
+#     }
+#   }
+# }
 
+opencode
 ```
 
 ### Citation
@@ -311,7 +377,7 @@ Because Ornith-1.0-9B exposes an OpenAI-compatible endpoint with tool calling, i
 If you find our work helpful, feel free to give us a cite.
 
 ```bibtex
-@misc{ornith_9b,
+@misc{ornith-1.0,
     title = {{Ornith-1.0}: Agentic Coding, Open to All},
     url = {https://deep-reinforce.com/ornith_1_0.html},
     author = {{DeepReinforce Team}},
