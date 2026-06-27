@@ -19,7 +19,7 @@ Highlights:
 - **Self-Improving Training Framework**:  Ornith-1.0 employs RL to learn to generate not only solution rollouts, but also the scallfold that drive those rollouts. By jointly optimizing the scaffold and the resulting solution, the model  discovers better search trajectories and generates higher-quality solutions. 
 - **Licence**: MIT licensed, globally accessible, and free from regional limitations.
 
-<img style="width: 100%; max-width: 900px;" src="assets/ornith_9b_eval.png" alt="Ornith 9B Benchmark Results" title="Ornith 9B Benchmark Results">
+<img style="width: 100%; max-width: 900px;" src="assets/ornith_397b_eval.png" alt="Ornith 397B Benchmark Results" title="Ornith 397B Benchmark Results">
 
 ## Ornith 1.0 
 
@@ -84,7 +84,7 @@ The table below merges the benchmark results of the full **Ornith-1.0** family (
 
 ## Quickstart
 
-> **📝 NOTE**
+> **NOTE**
 >
 > **Ornith-1.0** is a **reasoning model**: by default the assistant turn opens with a `<think> … </think>` block before the final answer. The serving recipes below enable a reasoning parser so the chain-of-thought is returned in a separate `reasoning_content` field, and a tool-call parser so the model's `<tool_call>` blocks are surfaced as OpenAI-style `tool_calls`.
 >
