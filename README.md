@@ -4,8 +4,11 @@
 <img src=assets/ornith_logo.png width="65%"/>
 </div>
 
+<div align="center">
+
 [![Ornith Blog](https://img.shields.io/badge/%F0%9F%A6%A2%EF%B8%8F%20Ornith%20Blog%20-FD8E5B)](https://deep-reinforce.com/ornith.html)
 
+</div>
 
 # Introduction
 
@@ -22,7 +25,7 @@ Highlights:
 
 ## Ornith 1.0 
 
-This model card documents **Ornith-1.0-9B**, the most lightweight member of the Ornith family, designed for efficient single-GPU deployment.
+Ornith-1.0 is released as a family of checkpoints — a **dense** 9B model and two **Mixture-of-Experts** models (35B, 397B), all post-trained for agentic coding, and each published in several precision / format variants (bf16, FP8, GGUF). This card covers the whole family: the benchmarks below compare every size, and the serving and usage recipes apply to all of them.
 
 ### Benchmarks
 
@@ -83,28 +86,46 @@ The table below merges the benchmark results of the full **Ornith-1.0** family (
 
 ## Quickstart
 
-<div style="border-left:4px solid #FD8E5B;background:rgba(253,142,91,0.1);border-radius:6px;padding:12px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.6">
-<div style="font-weight:700;color:#FD8E5B;margin-bottom:6px">📝 NOTE</div>
-<p style="margin:0 0 10px"><b>Ornith-1.0-9B</b> is a <b>reasoning model</b>: by default the assistant turn opens with a <code style="background:rgba(253,142,91,0.15);padding:1px 5px;border-radius:4px">&lt;think&gt; … &lt;/think&gt;</code> block before the final answer. The serving recipes below enable a reasoning parser so the chain-of-thought is returned in a separate <code style="background:rgba(253,142,91,0.15);padding:1px 5px;border-radius:4px">reasoning_content</code> field, and a tool-call parser so the model's <code style="background:rgba(253,142,91,0.15);padding:1px 5px;border-radius:4px">&lt;tool_call&gt;</code> blocks are surfaced as OpenAI-style <code style="background:rgba(253,142,91,0.15);padding:1px 5px;border-radius:4px">tool_calls</code>.</p>
-<p style="margin:0 0 6px">Serving Ornith-1.0-9B requires recent runtimes:</p>
-<ul style="margin:0 0 10px;padding-left:20px">
-<li><b>Transformers</b> ≥ 5.8.1</li>
-<li><b>vLLM</b> ≥ 0.19.1</li>
-<li><b>SGLang</b> ≥ 0.5.9</li>
-</ul>
-<p style="margin:0">Recommended sampling parameters: <code style="background:rgba(253,142,91,0.15);padding:1px 5px;border-radius:4px">temperature=0.6</code>, <code style="background:rgba(253,142,91,0.15);padding:1px 5px;border-radius:4px">top_p=0.95</code>, <code style="background:rgba(253,142,91,0.15);padding:1px 5px;border-radius:4px">top_k=20</code> (use <code style="background:rgba(253,142,91,0.15);padding:1px 5px;border-radius:4px">temperature=1.0</code> to reproduce the reported benchmark setup).</p>
-</div>
+> **📝 NOTE**
+>
+> **Ornith-1.0** is a **reasoning model**: by default the assistant turn opens with a `<think> … </think>` block before the final answer. The serving recipes below enable a reasoning parser so the chain-of-thought is returned in a separate `reasoning_content` field, and a tool-call parser so the model's `<tool_call>` blocks are surfaced as OpenAI-style `tool_calls`.
+>
+> Serving Ornith-1.0 requires recent runtimes:
+>
+> - **Transformers** ≥ 5.8.1
+> - **vLLM** ≥ 0.19.1
+> - **SGLang** ≥ 0.5.9
+>
+> Recommended sampling parameters: `temperature=0.6`, `top_p=0.95`, `top_k=20` (use `temperature=1.0` to reproduce the reported benchmark setup).
 
 
-### Serving Ornith-1.0-9B
+### Serving Ornith-1.0
 
-Ornith-1.0-9B is a dense ~9B model (≈19 GB in bf16), so it serves comfortably on a **single 80GB GPU**. The recipes below stand up an OpenAI-compatible server; add `--tensor-parallel-size` / `--tp` if you want to shard across more GPUs.
+Ornith-1.0 ships as a dense **9B** model plus two **Mixture-of-Experts** models (**35B**, **397B**). All checkpoints expose the same OpenAI-compatible interface and support a **256K (262,144-token) context window**; the dense 9B fits on a single 80GB GPU, while the MoE checkpoints are sharded across a multi-GPU node with tensor parallelism. Each size is published in multiple precision / format variants:
+
+| Checkpoint | Architecture | Format | Best for |
+|---|---|---|---|
+| [Ornith-1.0-9B](https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B) | Dense (~9B) | bf16 | Single-GPU serving & fine-tuning |
+| [Ornith-1.0-9B-GGUF](https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B-GGUF) | Dense (~9B) | GGUF (quantized) | Local inference via llama.cpp / Ollama |
+| [Ornith-1.0-35B](https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B) | MoE (35B) | bf16 | Full-precision multi-GPU serving |
+| [Ornith-1.0-35B-FP8](https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B-FP8) | MoE (35B) | FP8 | ~Half the VRAM on FP8-capable GPUs |
+| [Ornith-1.0-35B-GGUF](https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B-GGUF) | MoE (35B) | GGUF (quantized) | Local inference via llama.cpp / Ollama |
+| [Ornith-1.0-397B](https://huggingface.co/deepreinforce-ai/Ornith-1.0-397B) | MoE (397B) | bf16 | Full-precision serving on a multi-GPU node |
+| [Ornith-1.0-397B-FP8](https://huggingface.co/deepreinforce-ai/Ornith-1.0-397B-FP8) | MoE (397B) | FP8 | Memory-efficient serving on FP8-capable GPUs |
+
+The recipes below stand up an OpenAI-compatible server under the shared alias `Ornith-1.0`. Set `MODEL` to the checkpoint you want, and match `--tensor-parallel-size` / `--tp` to your GPU count.
 
 #### vLLM
 
 ```bash
-vllm serve deepreinforce-ai/Ornith-1.0-9B \
-    --served-model-name Ornith-1.0-9B \
+# Pick a checkpoint — dense 9B, or MoE 35B / 397B (append -FP8 for lower-VRAM serving):
+MODEL=deepreinforce-ai/Ornith-1.0-397B
+
+# MoE checkpoints (35B / 397B): shard across the node with tensor parallelism.
+# Dense checkpoint (9B): fits on a single 80GB GPU — drop --tensor-parallel-size.
+vllm serve $MODEL \
+    --served-model-name Ornith-1.0 \
+    --tensor-parallel-size 8 \
     --host 0.0.0.0 --port 8000 \
     --max-model-len 262144 \
     --gpu-memory-utilization 0.90 \
@@ -117,9 +138,14 @@ vllm serve deepreinforce-ai/Ornith-1.0-9B \
 #### SGLang
 
 ```bash
+# Pick a checkpoint — dense 9B, or MoE 35B / 397B (append -FP8 for lower-VRAM serving):
+MODEL=deepreinforce-ai/Ornith-1.0-397B
+
+# MoE checkpoints (35B / 397B): shard with --tp ; dense 9B: drop --tp for a single GPU.
 python -m sglang.launch_server \
-    --model-path deepreinforce-ai/Ornith-1.0-9B \
-    --served-model-name Ornith-1.0-9B \
+    --model-path $MODEL \
+    --served-model-name Ornith-1.0 \
+    --tp 8 \
     --host 0.0.0.0 --port 8000 \
     --context-length 262144 \
     --mem-fraction-static 0.85 \
@@ -129,12 +155,12 @@ python -m sglang.launch_server \
 
 #### Hugging Face Transformers
 
-For a quick local test (or to script offline generation), load the model directly with Transformers. Make sure you have a recent release installed — see the [Transformers installation guide](https://huggingface.co/docs/transformers/installation); Ornith-1.0-9B requires `transformers >= 5.8.1`.
+For a quick local test (or to script offline generation), load the model directly with Transformers. Make sure you have a recent release installed — see the [Transformers installation guide](https://huggingface.co/docs/transformers/installation); Ornith-1.0 requires `transformers >= 5.8.1`. The dense 9B checkpoint is the easiest to run locally.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-model_name = "deepreinforce-ai/Ornith-1.0-9B"
+model_name = "deepreinforce-ai/Ornith-1.0-9B"  # or -35B / -397B
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(
@@ -180,7 +206,7 @@ else:
     reasoning, answer = "", text.strip()
 ```
 
-### Using Ornith-1.0-9B via the Chat Completions API
+### Using Ornith-1.0 via the Chat Completions API
 
 Once a vLLM or SGLang server is running, talk to it with any OpenAI-compatible client.
 
@@ -195,7 +221,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="Ornith-1.0-9B",
+    model="Ornith-1.0",
     messages=[
         {"role": "user", "content": "Write a one-line Python lambda that squares a number."}
     ],
@@ -210,7 +236,7 @@ print("reasoning:", getattr(message, "reasoning_content", None))
 print("answer:", message.content)
 ```
 
-You can also stream tokens, or hand the model tools — Ornith-1.0-9B emits well-formed function calls that the server parses into the standard `tool_calls` field:
+You can also stream tokens, or hand the model tools — Ornith-1.0 emits well-formed function calls that the server parses into the standard `tool_calls` field:
 
 ```python
 tools = [
@@ -229,7 +255,7 @@ tools = [
 ]
 
 response = client.chat.completions.create(
-    model="Ornith-1.0-9B",
+    model="Ornith-1.0",
     messages=[{"role": "user", "content": "What is the weather in Paris right now?"}],
     tools=tools,
     tool_choice="auto",
@@ -246,11 +272,11 @@ You can point any OpenAI-compatible SDK (Python, Node.js, etc.) or `curl` at the
 
 ## Agentic Usage
 
-Ornith-1.0-9B excels in tool-calling and agentic coding capabilities.
+Ornith-1.0 excels in tool-calling and agentic coding capabilities.
 
 ### Agent Frameworks
 
-Because Ornith-1.0-9B exposes an OpenAI-compatible endpoint with tool calling, it works out of the box with standard agent frameworks. Below is a minimal example that connects Ornith-1.0-9B to tools through an MCP server.
+Because Ornith-1.0 exposes an OpenAI-compatible endpoint with tool calling, it works out of the box with standard agent frameworks. Below is a minimal example that connects Ornith-1.0 to tools through an MCP server.
 
 ```python
 import os
@@ -281,7 +307,7 @@ tools = [
 messages = [{"role": "user", "content": "List the Python files in the current directory."}]
 
 response = client.chat.completions.create(
-    model="deepreinforce-ai/Ornith-1.0-9B",
+    model="Ornith-1.0",
     messages=messages,
     tools=tools,
     temperature=0.6,
@@ -297,7 +323,7 @@ print(response.choices[0].message)
 # Hermes talks to any OpenAI-compatible endpoint — point it at your Ornith server.
 export OPENAI_BASE_URL="http://localhost:8000/v1"
 export OPENAI_API_KEY="EMPTY"
-export MODEL="deepreinforce-ai/Ornith-1.0-9B"
+export MODEL="Ornith-1.0"
 ```
 
 #### OpenHands
@@ -305,7 +331,7 @@ export MODEL="deepreinforce-ai/Ornith-1.0-9B"
 pip install openhands-ai
 
 # OpenHands routes through LiteLLM; the "openai/" prefix selects the OpenAI-compatible path.
-export LLM_MODEL="openai/deepreinforce-ai/Ornith-1.0-9B"
+export LLM_MODEL="openai/Ornith-1.0"
 export LLM_BASE_URL="http://localhost:8000/v1"
 export LLM_API_KEY="EMPTY"
 
@@ -315,7 +341,7 @@ openhands
 
 #### llama.cpp / Ollama
 ```bash
-# Both runtimes load a GGUF build of Ornith (publish one at deepreinforce-ai/Ornith-1.0-9B-GGUF).
+# Both runtimes load a GGUF build — available for the 9B and 35B checkpoints (swap -9B for -35B).
 
 # llama.cpp — serve an OpenAI-compatible API on port 8000.
 llama-server -hf deepreinforce-ai/Ornith-1.0-9B-GGUF --port 8000 -c 262144
@@ -345,13 +371,13 @@ pip install unsloth
 # OpenClaw talks to any OpenAI-compatible endpoint — point it at your Ornith server.
 export OPENAI_BASE_URL="http://localhost:8000/v1"
 export OPENAI_API_KEY="EMPTY"
-export OPENAI_MODEL="deepreinforce-ai/Ornith-1.0-9B"
+export OPENAI_MODEL="Ornith-1.0"
 ```
 
 
 ### Coding CLIs
 
-Ornith-1.0-9B is optimized for terminal-based coding agents. Point any OpenAI-compatible coding CLI at your Ornith-1.0-9B endpoint (set `OPENAI_BASE_URL` and `OPENAI_API_KEY`) to understand large codebases, automate tedious work, and ship faster.
+Ornith-1.0 is optimized for terminal-based coding agents. Point any OpenAI-compatible coding CLI at your Ornith-1.0 endpoint (set `OPENAI_BASE_URL` and `OPENAI_API_KEY`) to understand large codebases, automate tedious work, and ship faster.
 
 #### OpenCode
 ```bash
@@ -364,7 +390,7 @@ Ornith-1.0-9B is optimized for terminal-based coding agents. Point any OpenAI-co
 #       "npm": "@ai-sdk/openai-compatible",
 #       "name": "Ornith (local)",
 #       "options": { "baseURL": "http://localhost:8000/v1", "apiKey": "EMPTY" },
-#       "models": { "deepreinforce-ai/Ornith-1.0-9B": { "name": "Ornith-1.0-9B" } }
+#       "models": { "Ornith-1.0": { "name": "Ornith-1.0" } }
 #     }
 #   }
 # }
